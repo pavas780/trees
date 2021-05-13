@@ -84,17 +84,11 @@ class binary:
             elif self.right is None:
                 return self.left
 
-            min_val = self.right.find_min()
-            self.data = min_val
-            self.right = self.right.delete(min_val)
+            max_val = self.left.find_max()
+            self.data = max_val
+            self.right = self.left.delete(max_val)
 
         return self
-
-
-
-
-
-
 
 def built_tree(element):
     root=binary(element[0])
@@ -102,16 +96,17 @@ def built_tree(element):
         root.addchild(element[i])
     return  root
 if __name__=='__main__':
-    countries = ["India", "Pakistan", "Germany", "USA", "China", "India", "UK", "USA"]
-    d=built_tree(countries)
-    print(d.preorder())
-    d.search('UK')
-    numbers_tree = built_tree([17, 4, 1, 20, 9, 23, 18, 34])
+
+    numbers_tree = built_tree([17, 34, 81, 18, 84, 23, 41,42,92])
     print("In order traversal gives this sorted list:", numbers_tree.inorder())
     print('the minimum element in the tree is',numbers_tree.find_min()) #finds minimum element in entire binary tree
     print('the maximum element in the tree is',numbers_tree.find_max()) #finds maximum element in entire binary tree
     print('the sum of the elements in the tree is',numbers_tree.calculate_sum()) #calcualtes sum of all elements
     print('In postorder traversal gives this sorted list:',numbers_tree.postorder()) #performs post order traversal of a binary tree
     print('In preorder traversal gives this sorted list:',numbers_tree.preorder())# performs  pre order traversal of a binary tree
-    numbers_tree.delete(20)
-    print('inorder',numbers_tree.inorder())
+    numbers_tree.delete(42)
+    print('inorder traversal after deleting ',numbers_tree.inorder())
+    numbers = built_tree([17, 4, 1, 20, 9, 23, 18, 34])
+
+    numbers.delete(18)
+    print('In order traversal gives this sorted list:',numbers.inorder())
